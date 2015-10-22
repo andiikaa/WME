@@ -56,22 +56,62 @@
                  </section>
          </article>
 
-         <table id="world_data_table">
-                <thead>
+         <div class="data_table_container">
+              <div class="show_hide_buttons">
+              Show/Hide:
+                 <Button title="hide column" class="hide_column_button">ID</Button>   |
+                 <Button title="hide column" class="hide_column_button">Country</Button>  |
+                 <Button title="hide column" class="hide_column_button">birth rate /1000</Button>    |
+                 <Button title="hide column" class="hide_column_button">cellphones /100</Button>    |
+                 <Button title="hide column" class="hide_column_button">children / woman</Button>   |
+                 <Button title="hide column" class="hide_column_button">electric usage</Button>     |
+                 <Button title="hide column" class="hide_column_button">internet usage</Button>
+              </div>
+
+                 <table class="data_table">
+                         <thead>
+
+                         <tr>
+                                         <th>ID</th>
+                                         <th>Country</th>
+                                         <th>birth rate /1000</th>
+                                         <th>cellphones /100</th>
+                                         <th>children / woman</th>
+                                         <th>electric usage</th>
+                                         <th>internet usage</th>
+                                 </tr>
+                         </thead>
+                         <tbody>
+                                 <tr>
+                                         <td>001</td>
+                                         <td>Brazil</td>
+                                         <td>16.405</td>
+                                         <td>90.01936334</td>
+                                         <td>1.862</td>
+                                         <td>2201.808724</td>
+                                         <td>4424.758692</td>
+                                 </tr>
                  <tr>
-                         <td>ID</td>
-                         <td>Country</td>
-                         <td>birth rate /1000</td>
-                         <td>cellphones /100</td>
-                         <td>children / woman</td>
-                         <td>electric usage</td>
-                         <td>internet usage</td>
+                         <td>002</td>
+                         <td>Germany</td>
+                         <td>16.405</td>
+                         <td>90.01936334</td>
+                         <td>1.862</td>
+                         <td>2201.808724</td>
+                         <td>4424.758692</td>
                  </tr>
-                </thead>
-                <tbody>
                  <tr>
-                         <td>001</td>
-                         <td>Brazil</td>
+                         <td>003</td>
+                         <td>USA</td>
+                         <td>16.405</td>
+                         <td>90.01936334</td>
+                         <td>1.862</td>
+                         <td>2201.808724</td>
+                         <td>4424.758692</td>
+                 </tr>
+                 <tr>
+                         <td>004</td>
+                         <td>Bosnia</td>
                          <td>16.405</td>
                          <td>90.01936334</td>
                          <td>1.862</td>
@@ -80,6 +120,7 @@
                  </tr>
                 </tbody>
          </table>
+         </div>
 
          <footer id="group_footer"> here goes the footer </footer>
 </body>

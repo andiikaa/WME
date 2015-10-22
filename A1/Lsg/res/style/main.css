@@ -3,6 +3,7 @@ body{
   line-height: 145%;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
+  font-stretch: normal;
 }
 
 
@@ -28,6 +29,7 @@ body{
          text-indent:100%;
          background-repeat:no-repeat;
   margin-right: 50px;
+  margin-left: 5px;
 }
 
 #link_logo:hover{
@@ -78,6 +80,41 @@ section.green_boxed_text_section{
   border: thin solid green; 
   box-shadow: 3px 5px 2px lightgrey;
   padding: 10px 8px 10px;
+}
+
+/* button for hiding columns in the data table*/
+button.hide_column_button{
+ /* width: 100%;
+  height: 100%;  */
+  border: none;
+  background-color: white;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-left: 1px;
+  padding-right: 1px;
+  text-decoration: underline;
+}
+
+button.hide_column_button:hover{
+  text-decoration: none;
+}
+
+div.data_table_container{
+    margin: 20px 5px 20px;  
+}
+
+div.show_hide_buttons{
+  /*float: left;*/
+}
+
+/* Data table*/
+table.data_table{
+  width: 100%;
+  margin-top: 10px;
+}
+
+table.data_table thead{
+  background: lightgray;
 }
 
 
