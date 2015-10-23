@@ -59,16 +59,26 @@
          <div class="data_table_container">
               <div class="show_hide_buttons">
               Show/Hide:
-                 <Button title="hide column" class="hide_column_button">ID</Button>   |
-                 <Button title="hide column" class="hide_column_button">Country</Button>  |
-                 <Button title="hide column" class="hide_column_button">birth rate /1000</Button>    |
-                 <Button title="hide column" class="hide_column_button">cellphones /100</Button>    |
-                 <Button title="hide column" class="hide_column_button">children / woman</Button>   |
-                 <Button title="hide column" class="hide_column_button">electric usage</Button>     |
-                 <Button title="hide column" class="hide_column_button">internet usage</Button>
+               <!--  <Button title="hide column" class="hide_column_button" onclick="toggle_column('data_table_col_1')">ID</Button>   |
+                 <Button title="hide column" class="hide_column_button" onclick="toggle_column('data_table_col_2')">Country</Button>  |  -->
+                 <Button title="hide column" class="hide_column_button" onclick="toggle_column('data_table_col_3')">birth rate /1000</Button>    |
+                 <Button title="hide column" class="hide_column_button" onclick="toggle_column('data_table_col_4')">cellphones /100</Button>    |
+                 <Button title="hide column" class="hide_column_button" onclick="toggle_column('data_table_col_5')">children / woman</Button>   |
+                 <Button title="hide column" class="hide_column_button" onclick="toggle_column('data_table_col_6')">electric usage</Button>     |
+                 <Button title="hide column" class="hide_column_button" onclick="toggle_column('data_table_col_7')">internet usage</Button>
               </div>
 
                  <table class="data_table">
+                         <colgroup>
+                                 <col id="data_table_col_1">
+                                 <col id="data_table_col_2">
+                                 <col id="data_table_col_3">
+                                 <col id="data_table_col_4">
+                                 <col id="data_table_col_5">
+                                 <col id="data_table_col_6">
+                                 <col id="data_table_col_7">
+                         </colgroup>
+
                          <thead>
 
                          <tr>
