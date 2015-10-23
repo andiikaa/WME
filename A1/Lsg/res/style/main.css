@@ -125,3 +125,28 @@ table.data_table tbody:before{
   display:block;
 }
 
+/* footer at the end of the page */
+#group_footer{
+  width: 99%;
+  border-top: medium solid green;
+  padding: 10px 0px 0px;
+  margin: 0px 5px 5px;
+  
+  /*values for setting the footer at the end (if not enough content) */
+  /*
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;*/
+}
+
+/* container left in the footer */
+.footer_left_container{
+  float: left;
+  text-align: left;
+}
+
+/* container right in the footer */
+.footer_right_container{
+  text-align: right;
+}
