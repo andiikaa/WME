@@ -97,10 +97,9 @@ section.green_boxed_text_section{
 
 /* button for hiding columns in the data table*/
 button.hide_column_button{
- /* width: 100%;
-  height: 100%;  */
   border: none;
   background-color: white;
+  color: darkgray;
   margin-left: 0px;
   margin-right: 0px;
   padding-left: 1px;
@@ -118,6 +117,9 @@ div.data_table_container{
 
 div.show_hide_buttons{
   /*float: left;*/
+  color: darkgray;
+  font-weight: bold;
+  font-size: 12px;
 }
 
 /* Data table*/
