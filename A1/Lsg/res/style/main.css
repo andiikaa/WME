@@ -80,6 +80,19 @@ section.green_boxed_text_section{
   border: thin solid green;
   box-shadow: 3px 5px 2px lightgrey;
   padding: 10px 8px 10px;
+  -webkit-column-count: 3;
+  -moz-column-count: 3;
+}
+
+/* Links in the green text section*/
+.green_boxed_text_section a{
+  color: green;
+  text-decoration: underline;
+}
+
+.green_boxed_text_section a:hover{
+  color: green;
+  text-decoration: none;
 }
 
 /* button for hiding columns in the data table*/
