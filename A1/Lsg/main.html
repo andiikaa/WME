@@ -21,6 +21,8 @@
 
          <title>Aufgabe 1</title>
 </head>
+<!-- no automatic loading at this moment-->
+<!--<body onload="add_table_row('data_table_1')">-->
 <body>
          <header id="menu_header">
                  <a id="link_logo" href="" title="Home"> Home </a>
@@ -71,7 +73,7 @@
                  <Button title="hide column" class="hide_column_button" onclick="toggle_column('data_table_col_7')">internet usage</Button>
               </div>
 
-                 <table class="data_table">
+                 <table class="data_table" id="data_table_1">
                          <colgroup>
                                  <col id="data_table_col_1">
                                  <col id="data_table_col_2">
@@ -86,7 +88,7 @@
 
                          <tr>
                                          <th>ID</th>
-                                         <th>Country</th>
+                                         <th onclick="sort('data_table_1', 1)">Country</th>
                                          <th>birth rate /1000</th>
                                          <th>cellphones /100</th>
                                          <th>children / woman</th>
@@ -99,7 +101,7 @@
                                          <td>001</td>
                                          <td>Brazil</td>
                                          <td>16.405</td>
-                                         <td>90.01936334</td>
+                                         <td>99.99999999</td>
                                          <td>1.862</td>
                                          <td>2201.808724</td>
                                          <td>4424.758692</td>
@@ -108,7 +110,7 @@
                          <td>002</td>
                          <td>Germany</td>
                          <td>16.405</td>
-                         <td>90.01936334</td>
+                         <td>99.99999999</td>
                          <td>1.862</td>
                          <td>2201.808724</td>
                          <td>4424.758692</td>
