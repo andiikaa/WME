@@ -163,3 +163,17 @@ table.data_table tbody:before{
 .footer_right_container{
   text-align: right;
 }
+
+button.sort_button{
+  border: none;
+  background-color: white;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-left: 1px;
+  padding-right: 1px;
+  text-decoration: underline;
+}
+
+button.sort_button:hover{
+  color: darkgray;
+}
