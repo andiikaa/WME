@@ -1,3 +1,4 @@
+/* standard font, fonst size */
 body{
   margin: 0;
   line-height: 145%;
@@ -6,11 +7,24 @@ body{
   font-stretch: normal;
 }
 
+/* standard links*/
+a {
+  color: green;
+  text-decoration: underline;
+}
+
+a.hover{
+  text-decoration: none;
+}
+
 
 /* main header definition for nav header */
 #menu_header {
   margin: 0px;
   height: 80px;
+  position: fixed;
+  top:0px;
+  width:100%;
   border-bottom: thin solid lightgray;
   background: -webkit-linear-gradient(top bottom, lightgrey , white);
   background: -moz-linear-gradient(top bottom, lightgrey, white); /* For Firefox 3.6 to 15 */
@@ -72,7 +86,9 @@ h1.main_caption{
 
 }
 
-/* Text section with green border*/
+/* 
+  Text section with green border
+*/
 section.green_boxed_text_section{
   margin-left: 5px;
   margin-right: 5px;
@@ -80,8 +96,8 @@ section.green_boxed_text_section{
   border: thin solid green;
   box-shadow: 3px 5px 2px lightgrey;
   padding: 10px 8px 10px;
-  -webkit-column-count: 3;
-  -moz-column-count: 3;
+  -webkit-column-count: 1;
+  -moz-column-count: 1;
 }
 
 /* Links in the green text section*/
@@ -178,4 +194,64 @@ button.sort_button{
 
 button.sort_button:hover{
   color: darkgray;
+}
+
+#data_table_col_7{
+    visibility: collapse;
+}
+
+#data_table_col_6{
+    visibility: collapse;
+}
+
+#data_table_col_5{
+    visibility: collapse;
+}
+
+/*
+  Responsive Rules
+*/
+@media screen and (max-width: 320px){
+  
+  section.green_boxed_text_section{
+   -webkit-column-count: 1;
+   -moz-column-count: 1;
+  }
+  
+}
+
+@media screen and (min-width: 768px){
+  
+  section.green_boxed_text_section{
+   -webkit-column-count: 2;
+   -moz-column-count: 2;
+  }
+  
+  #data_table_col_5{
+    visibility: visible;
+  }
+  
+  #data_table_col_6{
+    visibility: visible;
+  }
+}
+
+@media screen and (min-width: 1200px){
+ 
+  section.green_boxed_text_section{
+   -webkit-column-count: 3;
+   -moz-column-count: 3;
+  }
+  
+  #data_table_col_7{
+    visibility: visible;
+  }
+  
+  #data_table_col_6{
+    visibility: visible;
+  }
+  
+  #data_table_col_5{
+    visibility: visible;
+  }
 }
