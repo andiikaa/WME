@@ -11,6 +11,9 @@ body{
 #menu_header {
   margin: 0px;
   height: 80px;
+  position: fixed;
+  top:0px;
+  width:100%;
   border-bottom: thin solid lightgray;
   background: -webkit-linear-gradient(top bottom, lightgrey , white);
   background: -moz-linear-gradient(top bottom, lightgrey, white); /* For Firefox 3.6 to 15 */
