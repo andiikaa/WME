@@ -86,7 +86,9 @@ h1.main_caption{
 
 }
 
-/* Text section with green border*/
+/* 
+  Text section with green border
+*/
 section.green_boxed_text_section{
   margin-left: 5px;
   margin-right: 5px;
@@ -94,8 +96,29 @@ section.green_boxed_text_section{
   border: thin solid green;
   box-shadow: 3px 5px 2px lightgrey;
   padding: 10px 8px 10px;
-  -webkit-column-count: 3;
-  -moz-column-count: 3;
+  -webkit-column-count: 1;
+  -moz-column-count: 1;
+}
+
+@media screen and (max-width: 320px){
+  section.green_boxed_text_section{
+   -webkit-column-count: 1;
+   -moz-column-count: 1;
+  }  
+}
+
+@media screen and (min-width: 768px){
+  section.green_boxed_text_section{
+   -webkit-column-count: 2;
+   -moz-column-count: 2;
+  }  
+}
+
+@media screen and (min-width: 1200px){
+  section.green_boxed_text_section{
+   -webkit-column-count: 3;
+   -moz-column-count: 3;
+  }  
 }
 
 /* Links in the green text section*/
