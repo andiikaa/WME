@@ -1,9 +1,20 @@
+/* standard font, fonst size */
 body{
   margin: 0;
   line-height: 145%;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   font-stretch: normal;
+}
+
+/* standard links*/
+a {
+  color: green;
+  text-decoration: underline;
+}
+
+a.hover{
+  text-decoration: none;
 }
 
 
