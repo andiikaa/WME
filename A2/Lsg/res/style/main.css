@@ -1,0 +1,257 @@
+/* standard font, fonst size */
+body{
+  margin: 0;
+  line-height: 145%;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-stretch: normal;
+}
+
+/* standard links*/
+a {
+  color: green;
+  text-decoration: underline;
+}
+
+a.hover{
+  text-decoration: none;
+}
+
+
+/* main header definition for nav header */
+#menu_header {
+  margin: 0px;
+  height: 80px;
+  position: fixed;
+  top:0px;
+  width:100%;
+  border-bottom: thin solid lightgray;
+  background: -webkit-linear-gradient(top bottom, lightgrey , white);
+  background: -moz-linear-gradient(top bottom, lightgrey, white); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom, lightgrey , white); /* Standard syntax */
+}
+
+/* The link logo in the left corner of the header */
+#link_logo{
+  float: left;
+         background-image:url(../img/world_data_logo_v1.png);
+         display:block;
+         height:80px;
+         width:150px;
+         white-space:nowrap;
+         overflow: hidden;
+         text-indent:100%;
+         background-repeat:no-repeat;
+  margin-right: 50px;
+  margin-left: 5px;
+}
+
+#link_logo:hover{
+         background-position:0px -80px;
+}
+
+/* links in the nav header*/
+a.header_link{
+  height: 100%;
+  color: gray;
+
+}
+
+a.header_link:hover{
+}
+
+/* Elements in the nav header */
+.header_element{
+  float: left;
+  height: 80px;
+  text-align: :left;
+  vertical-align: middle;
+  padding: 40px 50px 40px; /*top, left-right, bottom,*/
+  margin:0px;
+  border-left: thin solid lightgray;
+    -moz-transition: background 0.7s;
+  -webkit-transition: background 0.7s;
+
+}
+
+.header_element:hover{
+      background: lightgray;
+}
+
+/* Main document caption */
+h1.main_caption{
+   margin: 40px 5px 30px;
+  font-size: 35px;
+  font-weight: normal;
+
+}
+
+/* 
+  Text section with green border
+*/
+section.green_boxed_text_section{
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: #F8F8F8;
+  border: thin solid green;
+  box-shadow: 3px 5px 2px lightgrey;
+  padding: 10px 8px 10px;
+  -webkit-column-count: 1;
+  -moz-column-count: 1;
+}
+
+/* Links in the green text section*/
+.green_boxed_text_section a{
+  color: green;
+  text-decoration: underline;
+}
+
+.green_boxed_text_section a:hover{
+  color: green;
+  text-decoration: none;
+}
+
+/* button for hiding columns in the data table*/
+button.hide_column_button{
+  border: none;
+  background-color: white;
+  color: darkgray;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-left: 1px;
+  padding-right: 1px;
+  text-decoration: underline;
+}
+
+button.hide_column_button:hover{
+  text-decoration: none;
+}
+
+div.data_table_container{
+    margin: 20px 5px 20px;
+}
+
+div.show_hide_buttons{
+  /*float: left;*/
+  color: darkgray;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+/* Data table*/
+table.data_table{
+  width: 100%;
+  margin-top: 10px;
+}
+
+table.data_table thead{
+  text-align: left;
+  background: white;
+  border-bottom: medium solid lightgray;
+}
+
+table.data_table tbody:before{
+  line-height:1em; 
+  content:"\200C"; 
+  display:block;
+}
+
+/* footer at the end of the page */
+#group_footer{
+  width: 99%;
+  border-top: medium solid green;
+  padding: 10px 0px 0px;
+  margin: 0px 5px 5px;
+  
+  /*values for setting the footer at the end (if not enough content) */
+  /*
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;*/
+}
+
+/* container left in the footer */
+.footer_left_container{
+  float: left;
+  text-align: left;
+}
+
+/* container right in the footer */
+.footer_right_container{
+  text-align: right;
+}
+
+button.sort_button{
+  border: none;
+  background-color: white;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-left: 1px;
+  padding-right: 1px;
+  text-decoration: underline;
+}
+
+button.sort_button:hover{
+  color: darkgray;
+}
+
+#data_table_col_7{
+    visibility: collapse;
+}
+
+#data_table_col_6{
+    visibility: collapse;
+}
+
+#data_table_col_5{
+    visibility: collapse;
+}
+
+/*
+  Responsive Rules
+*/
+@media screen and (max-width: 320px){
+  
+  section.green_boxed_text_section{
+   -webkit-column-count: 1;
+   -moz-column-count: 1;
+  }
+  
+}
+
+@media screen and (min-width: 768px){
+  
+  section.green_boxed_text_section{
+   -webkit-column-count: 2;
+   -moz-column-count: 2;
+  }
+  
+  #data_table_col_5{
+    visibility: visible;
+  }
+  
+  #data_table_col_6{
+    visibility: visible;
+  }
+}
+
+@media screen and (min-width: 1200px){
+ 
+  section.green_boxed_text_section{
+   -webkit-column-count: 3;
+   -moz-column-count: 3;
+  }
+  
+  #data_table_col_7{
+    visibility: visible;
+  }
+  
+  #data_table_col_6{
+    visibility: visible;
+  }
+  
+  #data_table_col_5{
+    visibility: visible;
+  }
+}
