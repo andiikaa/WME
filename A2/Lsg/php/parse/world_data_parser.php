@@ -49,8 +49,24 @@ class WorldDataParser{
 		return file_put_contents(XML_PATH, $xml) == FALSE ? FALSE : TRUE;
 	}
 	
-	
-	function printXML(){}
+	/*
+	transformes xml data with the help of a given stylesheet
+	*/
+	function printXML($xml_path, $xsl_path){
+		$xml_dom = new DOMDocument();
+		$xml_dom->load($xml_path);
+
+		
+		$xsl_dom = new DOMDocument();
+		$xsl_dom->load($xsl_path);
+		
+		$proc = new XSLTProcessor();
+		$proc->importStylesheet($xsl_dom);
+		
+		$doc = $proc->transformToDOC($xml_dom);
+		$doc->formatOutput = true;
+		return $doc->saveHTML();
+	}
 	
 	/*
 	

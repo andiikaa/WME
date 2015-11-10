@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+	include("world_data_parser.php");
+?>
 <html>
 <head>
          <meta charset="UTF-8">
@@ -36,7 +39,7 @@
                  </nav>
          </header>
 
-         <div class="data_table_container">
+         <div class="data_table_container_2">
               <div class="show_hide_buttons">
               Show/Hide:
                <!--  <Button title="hide column" class="hide_column_button" onclick="toggle_column('data_table_col_1')">ID</Button>   |
@@ -47,48 +50,18 @@
                  <Button title="hide column" class="hide_column_button" onclick="toggle_column('data_table_col_6')">electric usage</Button>     |
                  <Button title="hide column" class="hide_column_button" onclick="toggle_column('data_table_col_7')">internet usage</Button>
               </div>
+			  
+<?php
+	//Inserts Data Table
 
-                 <table class="data_table" id="data_table_1">
-                         <colgroup>
-                                 <col id="data_table_col_1">
-                                 <col id="data_table_col_2">
-                                 <col id="data_table_col_3">
-                                 <col id="data_table_col_4">
-                                 <col id="data_table_col_5">
-                                 <col id="data_table_col_6">
-                                 <col id="data_table_col_7">
-                         </colgroup>
+	$parser = new WorldDataParser();
+	$parsed = $parser->parseCSV(WORLD_DATA_PATH);
+	$save_result = $parser->saveXML($parsed);	
+	$print = $parser->printXML(XML_PATH, XSL_PATH);
+	
+	echo $print;
 
-                         <thead>
-
-                         <tr>
-                                         <th>ID</th>
-                                         <th>
-                                                 Country
-                                                 <Button class="sort_button" onclick="sort('data_table_1', 1, 0)"><i class="fa fa-angle-down"></i></Button>
-                                                 <Button class="sort_button" onclick="sort('data_table_1', 1, 1)"><i class="fa fa-angle-up"></i></Button>
-                                         </th>
-                                         <th>birth rate /1000</th>
-                                         <th>cellphones /100</th>
-                                         <th>children / woman</th>
-                                         <th>electric usage</th>
-                                         <th>internet usage</th>
-                                 </tr>
-                         </thead>
-                         <tbody>
-						 
-				<tr>
-                         <td>002</td>
-                         <td>Canada</td>
-                         <td>16.405</td>
-                         <td>99.99999999</td>
-                         <td>1.862</td>
-                         <td>2201.808724</td>
-                         <td>4424.758692</td>
-                 </tr>
-                                
-                </tbody>
-         </table>
+?>      
          </div>
 
          <footer id="group_footer">

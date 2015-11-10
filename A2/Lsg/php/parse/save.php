@@ -21,8 +21,6 @@
 	$parsed = $parser->parseCSV(WORLD_DATA_PATH);
 	$save_result = $parser->saveXML($parsed);
 	
-	//echo $save_result;
-	
 	if($save_result)
 		echo "<p style=\"color: green\">Writing XML file was succesful</p>";
 	else
