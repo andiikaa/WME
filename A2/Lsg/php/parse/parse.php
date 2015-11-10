@@ -18,7 +18,7 @@
 	<pre>
 <?php	
 	$parser = new WorldDataParser();
-	$parsedCSV = $parser->parseCSV("../../res/data/world_data_v1.csv");
+	$parsedCSV = $parser->parseCSV(WORLD_DATA_PATH);
 			
 	echo var_dump($parsedCSV);
 ?>
