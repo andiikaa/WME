@@ -80,7 +80,7 @@ a.header_link:hover{
 
 /* Main document caption */
 h1.main_caption{
-   margin: 40px 5px 30px;
+   margin: 110px 5px 30px;
   font-size: 35px;
   font-weight: normal;
 
@@ -125,6 +125,7 @@ button.hide_column_button{
 
 button.hide_column_button:hover{
   text-decoration: none;
+  font-weight: bold;
 }
 
 div.data_table_container{
@@ -159,7 +160,7 @@ table.data_table tbody:before{
 /* footer at the end of the page */
 #group_footer{
   width: 99%;
-  border-top: medium solid green;
+  border-top: 2px solid green;
   padding: 10px 0px 0px;
   margin: 0px 5px 5px;
   
@@ -211,13 +212,15 @@ button.sort_button:hover{
 /*
   Responsive Rules
 */
-@media screen and (max-width: 320px){
+@media screen and (min-width: 320px){
   
   section.green_boxed_text_section{
    -webkit-column-count: 1;
    -moz-column-count: 1;
   }
-  
+ #data_table_col_5{
+    visibility: visible;
+ }
 }
 
 @media screen and (min-width: 768px){
@@ -229,6 +232,7 @@ button.sort_button:hover{
   
   #data_table_col_5{
     visibility: visible;
+  
   }
   
   #data_table_col_6{
