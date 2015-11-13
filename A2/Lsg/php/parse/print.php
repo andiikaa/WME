@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-	include("world_data_parser.php");
+        include("world_data_parser.php");
 ?>
 <html>
 <head>
@@ -8,7 +8,7 @@
          <meta name="description" content="WME Aufgabe 2">
          <meta name="keywords" content="PHP, XML">
          <meta name="author" content="Andre Kuehnert">
-         <meta name="author" content="TODO">
+         <meta name="author" content="Fabian Boltz">
 
          <!-- CSS Reset-->
          <link rel="stylesheet" type="text/css" href="/res/style/reset.css">
@@ -50,18 +50,18 @@
                  <Button title="hide column" class="hide_column_button" onclick="toggle_column('data_table_col_6')">electric usage</Button>     |
                  <Button title="hide column" class="hide_column_button" onclick="toggle_column('data_table_col_7')">internet usage</Button>
               </div>
-			  
+
 <?php
-	//Inserts Data Table
+        //Inserts Data Table
 
-	$parser = new WorldDataParser();
-	$parsed = $parser->parseCSV(WORLD_DATA_PATH);
-	$save_result = $parser->saveXML($parsed);	
-	$print = $parser->printXML(XML_PATH, XSL_PATH);
-	
-	echo $print;
+        $parser = new WorldDataParser();
+        $parsed = $parser->parseCSV(WORLD_DATA_PATH);
+        $save_result = $parser->saveXML($parsed);
+        $print = $parser->printXML(XML_PATH, XSL_PATH);
 
-?>      
+        echo $print;
+
+?>
          </div>
 
          <footer id="group_footer">
@@ -71,7 +71,7 @@
                  </div>
                  <div class="footer_right_container">
                          The solution has been created by:<br>
-                         Andr&eacute; K&uuml;hnert (s6510611) and Nobody - Team 45
+                         Andr&eacute; K&uuml;hnert (s6510611) and Fabian Boltz (s3349388) - Team 45
                  </div>
          </footer>
 </body>
