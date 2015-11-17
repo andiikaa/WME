@@ -11,7 +11,7 @@
          <meta name="author" content="Fabian Boltz">
 
          <!-- CSS Reset-->
-         <link rel="stylesheet" type="text/css" href="/res/style/reset.css">
+         <link rel="stylesheet" type="text/css" href="/Team_45/res/style/reset.css">
 
          <!-- Roboto Web Font over https connection, not local-->
          <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
@@ -19,8 +19,8 @@
          <!-- Font Awesome over https connection, not local -->
          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
-         <link rel="stylesheet" type="text/css" href="/res/style/main.css">
-         <script src="/res/script/main.js" type="text/javascript"></script>
+         <link rel="stylesheet" type="text/css" href="/Team_45/res/style/main.css">
+         <script src="/Team_45/res/script/main.js" type="text/javascript"></script>
 
          <title>Aufgabe 2 - Print</title>
 </head>
@@ -29,10 +29,10 @@
                  <a id="link_logo" href="" title="Home"> Home </a>
                  <nav>
                  <ul>
-                        <a href="/index.html" class="header_link"> <li class="header_element"><i class="fa fa-list-ul"></i>  A1 - Table </li> </a>
-                        <a href="/php/parse/parse.php" class="header_link"> <li class="header_element"><i class="fa fa-list-ul"></i>  A2 - Parse </li> </a>
-                        <a href="/php/parse/save.php" class="header_link"> <li class="header_element"><i class="fa fa-list-ul"></i>  A2 - Save  </li> </a>
-                        <a href="/php/parse/print.php" class="header_link"> <li class="header_element"><i class="fa fa-list-ul"></i>  A2 - Print </li> </a>
+                        <a href="/Team_45/index.html" class="header_link"> <li class="header_element"><i class="fa fa-list-ul"></i>  A1 - Table </li> </a>
+                        <a href="/Team_45/php/parse/parse.php" class="header_link"> <li class="header_element"><i class="fa fa-list-ul"></i>  A2 - Parse </li> </a>
+                        <a href="/Team_45/php/parse/save.php" class="header_link"> <li class="header_element"><i class="fa fa-list-ul"></i>  A2 - Save  </li> </a>
+                        <a href="/Team_45/php/parse/print.php" class="header_link"> <li class="header_element"><i class="fa fa-list-ul"></i>  A2 - Print </li> </a>
                         <a href="" class="header_link"> <li class="header_element"><i class="fa fa-list-ul"></i>  A3 - REST </li> </a>
                         <a href="" class="header_link"> <li class="header_element"><i class="fa fa-list-ul"></i>  A4 - Vis  </li> </a>
                  </ul>
