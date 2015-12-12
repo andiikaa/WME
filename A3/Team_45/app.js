@@ -62,7 +62,16 @@ app.get('/properties', function (req, res) {
   res.send(properties);
 });
 
-
+app.get('/properties/:int(\\d+)', function (req, res) {
+	var id = parseInt(req.params.int);
+	var response;
+	if(id >= properties.length)
+		response = "error";
+	else
+		response = properties[id];
+	console.log("Prop with id '%d' : '%s' ", id, response);
+	res.send(response);
+});
 
 
 // DO NOT CHANGE!
