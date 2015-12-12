@@ -19,14 +19,29 @@ app.use( express.static( path.join(__dirname, "public") ) );
 /**************************************************************************
 ****************************** csv2json *********************************
 **************************************************************************/
+/*
+Documentation https://github.com/Keyang/node-csvtojson
+*/
+
+var jsonTable;
+var converter = new Converter({
+  checkType:false,
+  delimiter:";"
+});
+
+converter.on("end_parsed", function (jsonArray) {
+	jsonTable = jsonArray;
+});
+
+require("fs").createReadStream("public/world_data.csv").pipe(converter);
 
 /**************************************************************************
 ********************** handle HTTP METHODS ***********************
 **************************************************************************/
 
-/* GET Handlers */
+// GET Handlers
 app.get('/items', function (req, res) {
-  res.send('get all items with all props');
+  res.send(jsonTable);
 });
 
 app.get('/items/id', function (req, res) {
@@ -40,6 +55,8 @@ app.get('/items/id/id', function (req, res) {
 app.get('/properties', function (req, res) {
   res.send('get item with this id');
 });
+
+
 
 
 // DO NOT CHANGE!
