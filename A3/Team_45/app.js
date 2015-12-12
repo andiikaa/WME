@@ -116,6 +116,28 @@ app.get('/properties/:int(\\d+)', function (req, res) {
 	res.send(response);
 });
 
+// ####################################### TODO
+// POST /items
+app.post('/items', function (req, res) {
+	// send status: Added country { name } to list !	
+	
+  res.send('POST request to the homepage');
+});
+
+// ####################################### TODO
+// DELETE /items
+app.delete('/items', function (req, res) {
+	// Deleted last	country:{name}!
+  res.send('POST request to the homepage');
+});
+
+// ####################################### TODO
+// DELETE /items/id
+app.delete('/items/:id([0-9]+)', function (req, res) {
+	// "no such id {" + id + "} in database"
+  res.send('POST request to the homepage');
+});
+
 
 // DO NOT CHANGE!
 // bind server to port
