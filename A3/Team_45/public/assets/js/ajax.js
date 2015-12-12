@@ -11,12 +11,13 @@ $("#country_filter").submit(function(event) {
 	var tBody = document.getElementById("table_body");
 	clearTbody(tBody);
 	
-	if(!tryRange(range))
+	if(!tryRange(range)){
 		if(id == null || id.trim() == ""){
 			receiveTable();
 			return;
 		}
-	filterSingle(id);
+		filterSingle(id);
+	}
 });
 
 //tries to get the given range.
