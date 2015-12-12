@@ -24,6 +24,23 @@ app.use( express.static( path.join(__dirname, "public") ) );
 ********************** handle HTTP METHODS ***********************
 **************************************************************************/
 
+/* GET Handlers */
+app.get('/items', function (req, res) {
+  res.send('get all items with all props');
+});
+
+app.get('/items/id', function (req, res) {
+  res.send('get item with this id');
+});
+
+app.get('/items/id/id', function (req, res) {
+  res.send('get item with this id');
+});
+
+app.get('/properties', function (req, res) {
+  res.send('get item with this id');
+});
+
 
 // DO NOT CHANGE!
 // bind server to port
