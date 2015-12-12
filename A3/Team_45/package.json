@@ -9,5 +9,8 @@
   "author": "TEAM_45",
   "license": "ISC",
   "dependencies": {
+	"express" : "latest"
+	"csvtojson" : "latest"
+	"body-parser" : "latest"
   }
 }

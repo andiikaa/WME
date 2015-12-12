@@ -31,6 +31,7 @@ var converter = new Converter({
   delimiter:";"
 });
 
+//reads the csv
 converter.on("end_parsed", function (jsonArray) {
 	jsonTable = jsonArray;
 	properties = new Array();
@@ -46,6 +47,8 @@ require("fs").createReadStream("public/world_data.csv").pipe(converter);
 /**************************************************************************
 ********************** handle HTTP METHODS ***********************
 **************************************************************************/
+
+//gets a item by a id
 function getItemById(id){
 	for(var i = 0; i < jsonTable.length; i++){		
 		if(jsonTable[i]["id"] == id){
@@ -55,6 +58,7 @@ function getItemById(id){
 		return null;
 }
 
+//gets the range list
 function getRangeList(start, end){
 	var tmp = new Array();
 	for(var i = 0; i < jsonTable.length; i++){

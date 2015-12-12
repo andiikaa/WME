@@ -19,6 +19,8 @@ $("#country_filter").submit(function(event) {
 	filterSingle(id);
 });
 
+//tries to get the given range.
+//returns false if range field is empty or in wrong format
 function tryRange(range){
 	var rangeSplit;
 	if(range == null)
@@ -37,6 +39,7 @@ function initialize(){
 	receiveProps();
 }
 
+// receive properties
 function receiveProps(){
 	$.ajax("http://localhost:3000/properties", {
       success: fillProps,
@@ -44,6 +47,7 @@ function receiveProps(){
    });	
 }
 
+// receive the full table
 function receiveTable(){
 	$.ajax("http://localhost:3000/items", {
       success: fillTable,
@@ -51,6 +55,7 @@ function receiveTable(){
    });
 }
 
+// sends request for filtered table
 function filterRange(start, end){
 	$.ajax("http://localhost:3000/items/" + start + "/" + end, {
       success: fillTable,
@@ -58,6 +63,7 @@ function filterRange(start, end){
    });	
 }
 
+// sends request for filtered table
 function filterSingle(id){
 	$.ajax("http://localhost:3000/items/" + id, {
       success: fillSingle,
@@ -65,6 +71,7 @@ function filterSingle(id){
    });		
 }
 
+// fills table with single value
 function fillSingle(data){
 	var tBody = document.getElementById("table_body");
 	clearTbody(tBody);	
@@ -78,6 +85,7 @@ function fillSingle(data){
 	tBody.appendChild(row);
 }
 
+// fills the property section
 function fillProps(data){
 	var selection = document.getElementById("prop_selection");
 	for(i = 0; i < data.length; i++){
@@ -89,11 +97,13 @@ function fillProps(data){
 	}		
 }
 
+//clears the given table body
 function clearTbody(body){
 	while (body.firstChild)
 		body.removeChild(body.firstChild);	
 }
 
+//fills the table with the given data (array)
 function fillTable(data){
 	var tBody = document.getElementById("table_body");
 	clearTbody(tBody);
@@ -109,6 +119,7 @@ function fillTable(data){
     }
 }
 
+//handles error responses
 function handleResponseError(jqXHR, textStatus, errorThrown){
 	console.log("Error happened");
 }
