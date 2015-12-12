@@ -7,8 +7,16 @@ $("#country_filter").submit(function(event) {
     event.preventDefault();
 	var id = document.getElementById("country_filter_id").value;
 	var range = document.getElementById("country_filter_range").value;
+	
+	var tBody = document.getElementById("table_body");
+	clearTbody(tBody);
+	
 	if(!tryRange(range))
-		filterSingle(id);
+		if(id == null || id.trim() == ""){
+			receiveTable();
+			return;
+		}
+	filterSingle(id);
 });
 
 function tryRange(range){
@@ -59,10 +67,7 @@ function filterSingle(id){
 
 function fillSingle(data){
 	var tBody = document.getElementById("table_body");
-	
-	while (tBody.firstChild)
-		tBody.removeChild(tBody.firstChild);
-	
+	clearTbody(tBody);	
 	var row = document.createElement('tr');
 	for(var prop in data){
         var cell = document.createElement('td');
@@ -84,12 +89,14 @@ function fillProps(data){
 	}		
 }
 
+function clearTbody(body){
+	while (body.firstChild)
+		body.removeChild(body.firstChild);	
+}
+
 function fillTable(data){
 	var tBody = document.getElementById("table_body");
-	
-	while (tBody.firstChild)
-		tBody.removeChild(tBody.firstChild);
-	
+	clearTbody(tBody);
 	for(var i = 0; i < data.length; i++){
         var row = document.createElement('tr');
         for(var prop in data[i]){
