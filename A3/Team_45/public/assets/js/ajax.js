@@ -20,6 +20,24 @@ function receiveTable(){
    });
 }
 
+function filterRange(start, end){
+	$.ajax("http://localhost:3000/items/" + start + "/" + end, {
+      success: fillTable,
+      error: handleResponseError
+   });	
+}
+
+function filterSingle(id){
+	$.ajax("http://localhost:3000/items/" + id, {
+      success: fillTable,
+      error: handleResponseError
+   });		
+}
+
+function filter(){
+	filterSingle("005");	
+}
+
 function fillProps(data){
 	var selection = document.getElementById("prop_selection");
 	for(i = 0; i < data.length; i++){
@@ -33,6 +51,17 @@ function fillProps(data){
 
 function fillTable(data){
 	var tBody = document.getElementById("table_body");
+	
+	for(var i = 0; i < data.length; i++){
+        var row = document.createElement('tr');
+        for(var prop in data[i]){
+            var cell = document.createElement('td');
+            var cont = document.createTextNode(data[i][prop]);
+            cell.appendChild(cont);
+            row.appendChild(cell);
+        }
+        tBody.appendChild(row);
+    }
 }
 
 function handleResponseError(jqXHR, textStatus, errorThrown){

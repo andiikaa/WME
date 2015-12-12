@@ -22,8 +22,10 @@ app.use( express.static( path.join(__dirname, "public") ) );
 /*
 Documentation https://github.com/Keyang/node-csvtojson
 */
+
 var jsonTable;
 var properties;
+
 var converter = new Converter({
   checkType:false,
   delimiter:";"
@@ -44,24 +46,65 @@ require("fs").createReadStream("public/world_data.csv").pipe(converter);
 /**************************************************************************
 ********************** handle HTTP METHODS ***********************
 **************************************************************************/
+function getItemById(id){
+	for(var i = 0; i < jsonTable.length; i++){		
+		if(jsonTable[i]["id"] == id){
+			return jsonTable[i];
+		}
+	}
+		return null;
+}
 
-// GET Handlers
+function getRangeList(start, end){
+	var tmp = new Array();
+	for(var i = 0; i < jsonTable.length; i++){
+		var tmpId = jsonTable[i]["id"];
+		if(tmpId >= start && tmpId <= end)
+			tmp.push(jsonTable[i]);
+	}
+	return tmp;	
+}
+
+
+// GET /items
 app.get('/items', function (req, res) {
   res.send(jsonTable);
 });
 
-app.get('/items/id', function (req, res) {
-  res.send('get item with this id');
+// GET /items/id
+app.get('/items/:id([0-9]+)', function (req, res) {
+	var id = req.params.id;
+	var response = getItemById(id);
+	console.log("item with id '%s' : ", id, response);
+	if(response == null)
+		res.status(404).send("no such id {" + id + "} in database");
+	res.send(response);
 });
 
-app.get('/items/id/id', function (req, res) {
-  res.send('get item with this id');
+// GET /items/id/id
+app.get('/items/:start([0-9]+)/:end([0-9]+)', function (req, res) {
+	var start = req.params.start;
+	var end = req.params.end;
+	var response;
+	
+	if(start == end)
+		response = getItemById(start);		
+	else if(start > end)
+		response = getRangeList(end, start);
+	else
+		response = getRangeList(start, end);
+	if(response == null || response.length == 0)
+		res.status(404).send("Range not possible.");
+	
+	res.send(response);
 });
 
+// GET /properties
 app.get('/properties', function (req, res) {
   res.send(properties);
 });
 
+// GET /properties/num
 app.get('/properties/:int(\\d+)', function (req, res) {
 	var id = parseInt(req.params.int);
 	var response;
@@ -69,7 +112,7 @@ app.get('/properties/:int(\\d+)', function (req, res) {
 		response = "error";
 	else
 		response = properties[id];
-	console.log("Prop with id '%d' : '%s' ", id, response);
+	//console.log("Prop with id '%d' : '%s' ", id, response);
 	res.send(response);
 });
 
