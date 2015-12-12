@@ -76,9 +76,11 @@ app.get('/items/:id([0-9]+)', function (req, res) {
 	var id = req.params.id;
 	var response = getItemById(id);
 	console.log("item with id '%s' : ", id, response);
+	
 	if(response == null)
 		res.status(404).send("no such id {" + id + "} in database");
-	res.send(response);
+	else
+		res.send(response);
 });
 
 // GET /items/id/id
@@ -93,10 +95,11 @@ app.get('/items/:start([0-9]+)/:end([0-9]+)', function (req, res) {
 		response = getRangeList(end, start);
 	else
 		response = getRangeList(start, end);
+	
 	if(response == null || response.length == 0)
 		res.status(404).send("Range not possible.");
-	
-	res.send(response);
+	else
+		res.send(response);
 });
 
 // GET /properties
