@@ -22,8 +22,8 @@ app.use( express.static( path.join(__dirname, "public") ) );
 /*
 Documentation https://github.com/Keyang/node-csvtojson
 */
-
 var jsonTable;
+var properties;
 var converter = new Converter({
   checkType:false,
   delimiter:";"
@@ -31,6 +31,12 @@ var converter = new Converter({
 
 converter.on("end_parsed", function (jsonArray) {
 	jsonTable = jsonArray;
+	properties = new Array();
+	
+	if(jsonTable.length == 0 )
+		return;
+	for(var prop in jsonTable[0])
+		properties.push(prop);		
 });
 
 require("fs").createReadStream("public/world_data.csv").pipe(converter);
@@ -53,7 +59,7 @@ app.get('/items/id/id', function (req, res) {
 });
 
 app.get('/properties', function (req, res) {
-  res.send('get item with this id');
+  res.send(properties);
 });
 
 
