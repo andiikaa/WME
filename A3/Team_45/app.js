@@ -25,21 +25,29 @@ Documentation https://github.com/Keyang/node-csvtojson
 
 var jsonTable;
 var properties;
+var lastId = 1;
 
 var converter = new Converter({
   checkType:false,
   delimiter:";"
 });
 
-//reads the csv
+//reads the csv and set the properties and the last id
 converter.on("end_parsed", function (jsonArray) {
 	jsonTable = jsonArray;
 	properties = new Array();
 	
 	if(jsonTable.length == 0 )
 		return;
+	
+	//remove the trailing zeros
+	for(var i = 0; i < jsonTable.length; i++)
+		jsonTable[i].id = removeTrailingZero(jsonTable[i].id);
+	
 	for(var prop in jsonTable[0])
-		properties.push(prop);		
+		properties.push(prop);
+		
+	lastId = parseInt(jsonTable[jsonTable.length - 1].id);
 });
 
 require("fs").createReadStream("public/world_data.csv").pipe(converter);
@@ -132,14 +140,23 @@ app.post('/items', function (req, res) {
 	if(name == null || birth == null || cell == null){
 		res.status(400).send("One or more arguments missing.");
 		return;
-	}
-	
-	var id = "050"; //TODO get correct id
-	var newItem = createItem(id, name, birth, cell);
+	}	
+	console.log("last id: " + lastId);
+	lastId++;
+	//all in same format - thats why the id as string
+	var newItem = createItem(lastId.toString(), name, birth, cell);
 	jsonTable.push(newItem);		
 	console.log("Added country { " + name + " } to list !");
 	res.send("Added country { " + name + " } to list !");
 });
+
+function removeTrailingZero(value){
+	var val = value.replace(/^[0]+/g, '');
+	//console.log("Convert from '" + value + "' to '" + val + "'");
+	if(val == "")
+		return 0;
+	return parseInt(val);
+}
 
 function createItem(vId, vName, vBirth, vCell){
 	return {id:	vId,
