@@ -131,18 +131,46 @@ app.post('/items', function (req, res) {
   res.send('POST request to the homepage');
 });
 
-// ####################################### TODO
+//Deletes an item with the given id. returns the item wich was deleted, 
+//otherwise null if no element with the given id exists.
+function deleteItemWithId(id){
+	for(var i = 0; i < jsonTable.length; i++){
+		if(id == jsonTable[i]["id"]){
+			var val = jsonTable[i];
+			jsonTable.splice(i, 1);
+			return val;
+		}
+	}
+	return null;	
+}
+
 // DELETE /items
 app.delete('/items', function (req, res) {
-	// Deleted last	country:{name}!
-  res.send('POST request to the homepage');
+	var lastIndex = jsonTable.length - 1;
+	if(lastIndex >= 0){
+		var item = jsonTable[lastIndex];
+		jsonTable.splice(lastIndex, 1);
+		console.log("Deleted last	country:{" + item["name"] + "} !");
+		res.send("Deleted last	country:{" + item["name"] + "} !");
+	}
+	else{
+		console.log("no items in database");
+		res.status(404).send("no items in database");
+	}
 });
 
-// ####################################### TODO
 // DELETE /items/id
 app.delete('/items/:id([0-9]+)', function (req, res) {
-	// "no such id {" + id + "} in database"
-  res.send('POST request to the homepage');
+	var id = req.params.id;
+	var item = deleteItemWithId(id);
+	if(item != null){
+		console.log("Deleted last	country:{" + item["name"] + "} !");
+		res.send("Deleted last	country:{" + item["name"] + "} !");
+	}
+	else{
+		console.log("no such id {" + id + "} in database");
+		res.status(404).send("no such id {" + id + "} in database");
+	}
 });
 
 

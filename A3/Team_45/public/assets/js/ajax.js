@@ -5,6 +5,40 @@ $(document).ready(initialize());
 //Submit filter form
 $("#country_filter").submit(function(event) {
     event.preventDefault();
+	filter();
+});
+
+//Delete form
+$("#country_delete").submit(function(event) {
+    event.preventDefault();
+	var id = document.getElementById("country_delete_id").value;
+	
+	if(id != null)
+		id = id.trim();
+	
+	if(id == "" || id == null)
+		deleteLastItem();
+	else
+		deleteItemWithId(id);	
+});
+
+function deleteItemWithId(id){
+	$.ajax("http://localhost:3000/items/" + id, {
+		method: "DELETE",
+		success: itemDeleted,
+		error: handleResponseError
+   });		
+}
+
+function deleteLastItem(){
+	$.ajax("http://localhost:3000/items/", {
+		method: "DELETE",
+      success: itemDeleted,
+      error: handleResponseError
+   });		
+}
+
+function filter(){
 	var id = document.getElementById("country_filter_id").value;
 	var range = document.getElementById("country_filter_range").value;
 	
@@ -14,11 +48,16 @@ $("#country_filter").submit(function(event) {
 	if(!tryRange(range)){
 		if(id == null || id.trim() == ""){
 			receiveTable();
-			return;
 		}
-		filterSingle(id);
+		else{
+			filterSingle(id);
+		}
 	}
-});
+}
+
+function itemDeleted(data){
+	filter();
+}
 
 //tries to get the given range.
 //returns false if range field is empty or in wrong format
