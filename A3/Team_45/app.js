@@ -17,15 +17,15 @@ app.use( express.static( path.join(__dirname, "public") ) );
 
 
 /**************************************************************************
-****************************** csv2json *********************************
+****************************** csv2json **********************************
 **************************************************************************/
 /*
 Documentation https://github.com/Keyang/node-csvtojson
 */
 
-var jsonTable;
-var properties;
-var lastId = 1;
+var jsonTable; //stores all items
+var properties; //stores all properties
+var lastId = 1; //the last index used
 
 var converter = new Converter({
   checkType:false,
@@ -53,30 +53,8 @@ converter.on("end_parsed", function (jsonArray) {
 require("fs").createReadStream("public/world_data.csv").pipe(converter);
 
 /**************************************************************************
-********************** handle HTTP METHODS ***********************
+********************** handle HTTP METHODS ********************************
 **************************************************************************/
-
-//gets a item by a id
-function getItemById(id){
-	for(var i = 0; i < jsonTable.length; i++){		
-		if(jsonTable[i]["id"] == id){
-			return jsonTable[i];
-		}
-	}
-		return null;
-}
-
-//gets the range list
-function getRangeList(start, end){
-	var tmp = new Array();
-	for(var i = 0; i < jsonTable.length; i++){
-		var tmpId = jsonTable[i]["id"];
-		if(tmpId >= start && tmpId <= end)
-			tmp.push(jsonTable[i]);
-	}
-	return tmp;	
-}
-
 
 // GET /items
 app.get('/items', function (req, res) {
@@ -150,6 +128,60 @@ app.post('/items', function (req, res) {
 	res.send("Added country { " + name + " } to list !");
 });
 
+// DELETE /items
+app.delete('/items', function (req, res) {
+	var lastIndex = jsonTable.length - 1;
+	if(lastIndex >= 0){
+		var item = jsonTable[lastIndex];
+		jsonTable.splice(lastIndex, 1);
+		console.log("Deleted last	country:{" + item["name"] + "} !");
+		res.send("Deleted last	country:{" + item["name"] + "} !");
+	}
+	else{
+		console.log("no items in database");
+		res.status(404).send("no items in database");
+	}
+});
+
+// DELETE /items/id
+app.delete('/items/:id([0-9]+)', function (req, res) {
+	var id = req.params.id;
+	var item = deleteItemWithId(id);
+	if(item != null){
+		console.log("Deleted last	country:{" + item["name"] + "} !");
+		res.send("Deleted last	country:{" + item["name"] + "} !");
+	}
+	else{
+		console.log("no such id {" + id + "} in database");
+		res.status(404).send("no such id {" + id + "} in database");
+	}
+});
+
+/**************************************************************************
+********************** Private METHODS ************************************
+**************************************************************************/
+
+//gets a item by a id
+function getItemById(id){
+	for(var i = 0; i < jsonTable.length; i++){		
+		if(jsonTable[i]["id"] == id){
+			return jsonTable[i];
+		}
+	}
+		return null;
+}
+
+//gets the range list
+function getRangeList(start, end){
+	var tmp = new Array();
+	for(var i = 0; i < jsonTable.length; i++){
+		var tmpId = jsonTable[i]["id"];
+		if(tmpId >= start && tmpId <= end)
+			tmp.push(jsonTable[i]);
+	}
+	return tmp;	
+}
+
 function removeTrailingZero(value){
 	var val = value.replace(/^[0]+/g, '');
 	//console.log("Convert from '" + value + "' to '" + val + "'");
@@ -187,35 +219,6 @@ function deleteItemWithId(id){
 	}
 	return null;	
 }
-
-// DELETE /items
-app.delete('/items', function (req, res) {
-	var lastIndex = jsonTable.length - 1;
-	if(lastIndex >= 0){
-		var item = jsonTable[lastIndex];
-		jsonTable.splice(lastIndex, 1);
-		console.log("Deleted last	country:{" + item["name"] + "} !");
-		res.send("Deleted last	country:{" + item["name"] + "} !");
-	}
-	else{
-		console.log("no items in database");
-		res.status(404).send("no items in database");
-	}
-});
-
-// DELETE /items/id
-app.delete('/items/:id([0-9]+)', function (req, res) {
-	var id = req.params.id;
-	var item = deleteItemWithId(id);
-	if(item != null){
-		console.log("Deleted last	country:{" + item["name"] + "} !");
-		res.send("Deleted last	country:{" + item["name"] + "} !");
-	}
-	else{
-		console.log("no such id {" + id + "} in database");
-		res.status(404).send("no such id {" + id + "} in database");
-	}
-});
 
 
 // DO NOT CHANGE!

@@ -2,6 +2,10 @@
 //document loaded
 $(document).ready(initialize());
 
+/********************************************************************************
+********************************* FORMS *****************************************
+*********************************************************************************/
+
 //Submit filter form
 $("#country_filter").submit(function(event) {
     event.preventDefault();
@@ -31,6 +35,10 @@ $("#country_add").submit(function(event) {
 	postNewItem(name, birth, cell);	
 });
 
+/********************************************************************************
+********************************* REQUESTS ***************************************
+*********************************************************************************/
+
 //the actual async post
 function postNewItem(name, birth, cell){
 		$.ajax("http://localhost:3000/items", {
@@ -58,48 +66,6 @@ function deleteLastItem(){
       success: refresh,
       error: handleResponseError
    });		
-}
-
-//filters - receives all values if no filter is set
-function filter(){
-	var id = document.getElementById("country_filter_id").value;
-	var range = document.getElementById("country_filter_range").value;
-	
-	var tBody = document.getElementById("table_body");
-	clearTbody(tBody);
-	
-	if(!tryRange(range)){
-		if(id == null || id.trim() == ""){
-			receiveTable();
-		}
-		else{
-			filterSingle(id);
-		}
-	}
-}
-
-function refresh(data){
-	filter();
-}
-
-//tries to get the given range.
-//returns false if range field is empty or in wrong format
-function tryRange(range){
-	var rangeSplit;
-	if(range == null)
-		return false;
-	
-	range = range.trim();
-	rangeSplit = range.split("-");
-	if(rangeSplit.length != 2)
-		return false;
-	filterRange(rangeSplit[0], rangeSplit[1]);
-	return true;	
-}
-
-function initialize(){
-	receiveTable();
-	receiveProps();
 }
 
 // receive properties
@@ -132,6 +98,55 @@ function filterSingle(id){
       success: fillSingle,
       error: handleResponseError
    });		
+}
+
+
+/********************************************************************************
+********************************* PRIVATE METHODS ********************************
+*********************************************************************************/
+
+//filters - receives all values if no filter is set
+function filter(){
+	var id = document.getElementById("country_filter_id").value;
+	var range = document.getElementById("country_filter_range").value;
+	
+	var tBody = document.getElementById("table_body");
+	clearTbody(tBody);
+	
+	if(!tryRange(range)){
+		if(id == null || id.trim() == ""){
+			receiveTable();
+		}
+		else{
+			filterSingle(id);
+		}
+	}
+}
+
+//Refreshs the table
+//at the moment only reloading with the filter settings
+function refresh(data){
+	filter();
+}
+
+//tries to get the given range.
+//returns false if range field is empty or in wrong format
+function tryRange(range){
+	var rangeSplit;
+	if(range == null)
+		return false;
+	
+	range = range.trim();
+	rangeSplit = range.split("-");
+	if(rangeSplit.length != 2)
+		return false;
+	filterRange(rangeSplit[0], rangeSplit[1]);
+	return true;	
+}
+
+function initialize(){
+	receiveTable();
+	receiveProps();
 }
 
 // fills table with single value
