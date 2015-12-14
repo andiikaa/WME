@@ -22,22 +22,42 @@ $("#country_delete").submit(function(event) {
 		deleteItemWithId(id);	
 });
 
+// Post new entry form
+$("#country_add").submit(function(event) {
+    event.preventDefault();	
+	var postData = $(this).serializeArray();	
+	postNewItem(postData);	
+});
+
+//the actual async post
+function postNewItem(postData){
+		$.ajax("http://localhost:3000/items/", {
+		type: postData,
+		method: "POST",
+		success: refresh,
+		error: handleResponseError
+   });	
+}
+
+//deletes item with the given id
 function deleteItemWithId(id){
 	$.ajax("http://localhost:3000/items/" + id, {
 		method: "DELETE",
-		success: itemDeleted,
+		success: refresh,
 		error: handleResponseError
    });		
 }
 
+//deletes last item stored in server db
 function deleteLastItem(){
 	$.ajax("http://localhost:3000/items/", {
 		method: "DELETE",
-      success: itemDeleted,
+      success: refresh,
       error: handleResponseError
    });		
 }
 
+//filters - receives all values if no filter is set
 function filter(){
 	var id = document.getElementById("country_filter_id").value;
 	var range = document.getElementById("country_filter_range").value;
@@ -55,7 +75,7 @@ function filter(){
 	}
 }
 
-function itemDeleted(data){
+function refresh(data){
 	filter();
 }
 

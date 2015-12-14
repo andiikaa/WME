@@ -114,22 +114,47 @@ app.get('/properties', function (req, res) {
 // GET /properties/num
 app.get('/properties/:int(\\d+)', function (req, res) {
 	var id = parseInt(req.params.int);
-	var response;
 	if(id >= properties.length)
-		response = "error";
+		res.status(404).send("No such property with id '" + id + "' found");
 	else
-		response = properties[id];
+		res.send(properties[id]);
 	//console.log("Prop with id '%d' : '%s' ", id, response);
-	res.send(response);
 });
 
-// ####################################### TODO
 // POST /items
 app.post('/items', function (req, res) {
-	// send status: Added country { name } to list !	
+	var name = req.body.country_name;
+	var birth = req.body.country_birth;
+	var cell = req.body.country_cellphone;
 	
-  res.send('POST request to the homepage');
+	if(name == null || birth == null || cell == null){
+		res.status(400).send("One or more arguments missing.");
+		return;
+	}
+	
+	var id = "050"; //TODO get correct id
+	var newItem = createItem(id, name, birth, cell);
+	jsonTable.push(newItem);		
+	console.log("Added country { " + name + " } to list !");
+	res.send("Added country { " + name + " } to list !");
 });
+
+function createItem(vId, vName, vBirth, vCell){
+	return {id:	vId,
+	name: vName,
+	birth_rate_per_1000: vBirth,
+	cell_phones_per_100: cCell,
+	children_per_woman: "",
+	electricity_consumption_per_capita: "",
+	gdp_per_capita: "",
+	gdp_per_capita_growth: "",
+	inflation_annual: "",
+	internet_user_per_100: "",
+	life_expectancy: "",
+	military_expenditure_percent_of_gdp: "", 
+	gps_lat: "",
+	gps_long: ""};
+}
 
 //Deletes an item with the given id. returns the item wich was deleted, 
 //otherwise null if no element with the given id exists.
