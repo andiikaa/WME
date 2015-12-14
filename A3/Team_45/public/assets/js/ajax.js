@@ -25,14 +25,17 @@ $("#country_delete").submit(function(event) {
 // Post new entry form
 $("#country_add").submit(function(event) {
     event.preventDefault();	
-	var postData = $(this).serializeArray();	
-	postNewItem(postData);	
+	var name = document.getElementById("country_name").value;
+	var birth = document.getElementById("country_birth").value;
+	var cell = document.getElementById("country_cellphone").value;
+	postNewItem(name, birth, cell);	
 });
 
 //the actual async post
-function postNewItem(postData){
-		$.ajax("http://localhost:3000/items/", {
-		type: postData,
+function postNewItem(name, birth, cell){
+		$.ajax("http://localhost:3000/items", {
+		data: '{ "country_name": "' + name + '", "country_birth": "' + birth + '", "country_cellphone": "' + cell + '"}',
+		contentType: "application/json", 
 		method: "POST",
 		success: refresh,
 		error: handleResponseError
@@ -50,7 +53,7 @@ function deleteItemWithId(id){
 
 //deletes last item stored in server db
 function deleteLastItem(){
-	$.ajax("http://localhost:3000/items/", {
+	$.ajax("http://localhost:3000/items", {
 		method: "DELETE",
       success: refresh,
       error: handleResponseError
@@ -181,5 +184,5 @@ function fillTable(data){
 
 //handles error responses
 function handleResponseError(jqXHR, textStatus, errorThrown){
-	console.log("Error happened");
+	console.log("Error: " + errorThrown);
 }

@@ -123,6 +123,8 @@ app.get('/properties/:int(\\d+)', function (req, res) {
 
 // POST /items
 app.post('/items', function (req, res) {
+	console.log("post data: " + req.body);
+	
 	var name = req.body.country_name;
 	var birth = req.body.country_birth;
 	var cell = req.body.country_cellphone;
@@ -143,7 +145,7 @@ function createItem(vId, vName, vBirth, vCell){
 	return {id:	vId,
 	name: vName,
 	birth_rate_per_1000: vBirth,
-	cell_phones_per_100: cCell,
+	cell_phones_per_100: vCell,
 	children_per_woman: "",
 	electricity_consumption_per_capita: "",
 	gdp_per_capita: "",
