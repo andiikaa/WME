@@ -1,6 +1,28 @@
 
+var visibleColumnNr = [];
+
 //document loaded
 $(document).ready(initialize());
+
+/********************************************************************************
+********************************* SHOW HIDE BUTTONS *****************************
+*********************************************************************************/
+$( "#show_selected_prop" ).click(function() {
+	 var cur = getColumnNumber();
+	showHideTableColumn(cur, false);	
+});
+
+$( "#hide_selected_prop" ).click(function() {
+  	var cur = getColumnNumber();
+	showHideTableColumn(cur, true);	
+});
+
+//gets the column number from the current selected index in the selection section
+function getColumnNumber(){
+	var sel = document.getElementById("prop_selection");
+	var cur = sel.options[sel.selectedIndex].value;
+	return ++cur;	
+}
 
 /********************************************************************************
 ********************************* FORMS *****************************************
@@ -127,7 +149,7 @@ function filter(){
 	var range = document.getElementById("country_filter_range").value;
 	
 	var tBody = document.getElementById("table_body");
-	clearTbody(tBody);
+	removeAllChilds(tBody);
 	
 	if(!tryRange(range)){
 		if(id == null || id.trim() == ""){
@@ -137,6 +159,7 @@ function filter(){
 			filterSingle(id);
 		}
 	}
+	hideTableCols();
 }
 
 //Refreshs the table and shows status message for requests which are successful
@@ -161,14 +184,14 @@ function tryRange(range){
 }
 
 function initialize(){
-	receiveTable();
 	receiveProps();
+	receiveTable();
 }
 
 // fills table with single value
 function fillSingle(data){
 	var tBody = document.getElementById("table_body");
-	clearTbody(tBody);	
+	removeAllChilds(tBody);	
 	var row = document.createElement('tr');
 	for(var prop in data){
         var cell = document.createElement('td');
@@ -177,30 +200,77 @@ function fillSingle(data){
         row.appendChild(cell);
     }	
 	tBody.appendChild(row);
+	hideTableCols();
 }
 
-// fills the property section
+// fills the property section and the table header
 function fillProps(data){
 	var selection = document.getElementById("prop_selection");
+	var thead = document.getElementById("table_head");
+	
+	removeAllChilds(thead);
+	
 	for(i = 0; i < data.length; i++){
-		var opt = document.createElement("option");
-		opt.value = i;
+		//table head
+		var th = document.createElement("th");
+		th.innerHTML = data[i];
+		thead.appendChild(th);
+		
+		//selection
+		var opt = document.createElement("option");		
+		opt.value = i;		
 		var txt = document.createTextNode(data[i]);
 		opt.appendChild(txt);
 		selection.appendChild(opt);
 	}		
+	
+	hideTableColsInit(data.length);
 }
 
-//clears the given table body
-function clearTbody(body){
-	while (body.firstChild)
-		body.removeChild(body.firstChild);	
+//hides not used table cols and inits the visibility array
+function hideTableColsInit(propCount){
+	for(var i = 0; i < propCount; i++)
+		visibleColumnNr.push(true);
+
+	console.log("columns");
+	console.log(visibleColumnNr);
+	for(var i = 6; i < propCount; i++){
+		if(i != 9){
+			visibleColumnNr[i] = false;
+			showHideTableColumn(i + 1, true);
+		}
+	}	
+}
+
+//hides the table cols specific to their settings in 'visibleColumnNr'
+function hideTableCols(){
+	for(var i = 0; i < visibleColumnNr.length; i++)
+		showHideTableColumn(i + 1, !visibleColumnNr[i]);
+}
+
+//hide a table column
+function showHideTableColumn(columnNr, hide){
+	if(hide){
+		$('#table_head th:nth-child(' + columnNr + ')').hide();
+		$('#table_body td:nth-child(' + columnNr + ')').hide();
+	}
+	else{
+		$('#table_head th:nth-child(' + columnNr + ')').show();
+		$('#table_body td:nth-child(' + columnNr + ')').show();
+	}
+	visibleColumnNr[columnNr -1] = !hide;	
+}
+
+//removes all childs from the parent
+function removeAllChilds(root){
+	while (root.firstChild)
+		root.removeChild(root.firstChild);	
 }
 
 //fills the table with the given data (array)
 function fillTable(data){
 	var tBody = document.getElementById("table_body");
-	clearTbody(tBody);
+	removeAllChilds(tBody);
 	for(var i = 0; i < data.length; i++){
         var row = document.createElement('tr');
         for(var prop in data[i]){
@@ -211,6 +281,7 @@ function fillTable(data){
         }
         tBody.appendChild(row);
     }
+	hideTableCols();
 }
 
 //handles error responses
