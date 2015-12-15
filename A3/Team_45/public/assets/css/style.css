@@ -1,3 +1,24 @@
+/* Status Box */
+
+#status_box{
+	visibility:hidden;
+	position:fixed;
+	bottom:0px;	
+	margin:10px;
+	padding: 30px;
+	background-color: green;
+	height: 50px;
+	opacity: 0.9;
+	border-radius: 2px;
+}
+
+#status_box > p{
+	padding:0px;
+	margin:0px;	
+	font-weight:bold;
+}
+
+
 /* CSS Document */
 
 .clearfix:before,

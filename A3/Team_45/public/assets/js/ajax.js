@@ -105,6 +105,22 @@ function filterSingle(id){
 ********************************* PRIVATE METHODS ********************************
 *********************************************************************************/
 
+//shows the status message for 5 seconds
+function showStatusMessage(message, isError){
+	var container = document.getElementById("status_box");
+	var st = document.getElementById("status_text");
+	
+	if(isError)
+		container.style.backgroundColor = "red";
+	else
+		container.style.backgroundColor = "green";
+	
+	container.style.visibility = 'visible';
+	st.innerHTML = message;
+	
+	setTimeout(function(){container.style.visibility = 'hidden'}, 5000);
+}
+
 //filters - receives all values if no filter is set
 function filter(){
 	var id = document.getElementById("country_filter_id").value;
@@ -123,9 +139,9 @@ function filter(){
 	}
 }
 
-//Refreshs the table
-//at the moment only reloading with the filter settings
+//Refreshs the table and shows status message for requests which are successful
 function refresh(data){
+	showStatusMessage(data, false);
 	filter();
 }
 
@@ -199,5 +215,6 @@ function fillTable(data){
 
 //handles error responses
 function handleResponseError(jqXHR, textStatus, errorThrown){
-	console.log("Error: " + errorThrown);
+	console.log("Error: " + errorThrown + ": " + jqXHR.responseText);	
+	showStatusMessage(errorThrown + ": " + jqXHR.responseText, true);
 }

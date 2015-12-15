@@ -134,8 +134,8 @@ app.delete('/items', function (req, res) {
 	if(lastIndex >= 0){
 		var item = jsonTable[lastIndex];
 		jsonTable.splice(lastIndex, 1);
-		console.log("Deleted last	country:{" + item["name"] + "} !");
-		res.send("Deleted last	country:{" + item["name"] + "} !");
+		console.log("Deleted last country:{" + item["name"] + "} !");
+		res.send("Deleted last country:{" + item["name"] + "} !");
 	}
 	else{
 		console.log("no items in database");
@@ -148,8 +148,8 @@ app.delete('/items/:id([0-9]+)', function (req, res) {
 	var id = req.params.id;
 	var item = deleteItemWithId(id);
 	if(item != null){
-		console.log("Deleted last	country:{" + item["name"] + "} !");
-		res.send("Deleted last	country:{" + item["name"] + "} !");
+		console.log("Deleted country:{" + item["name"] + "} !");
+		res.send("Deleted country:{" + item["name"] + "} !");
 	}
 	else{
 		console.log("no such id {" + id + "} in database");
